@@ -10,7 +10,7 @@ const bodyparser = require('koa-bodyparser')();
 const logger = require('koa-logger');
 
 const index = require('./routes/index');
-const users = require('./routes/users');
+const api = require('./routes/api');
 
 // middlewares
 app.use(convert(bodyparser));
@@ -31,7 +31,7 @@ app.use(async (ctx, next) => {
 });
 
 router.use('/', index.routes(), index.allowedMethods());
-router.use('/users', users.routes(), users.allowedMethods());
+router.use('/api/v1', api.routes(), api.allowedMethods());
 
 app.use(router.routes(), router.allowedMethods());
 // response
